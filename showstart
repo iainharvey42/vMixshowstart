@@ -18,6 +18,7 @@ dim busselection as string = ""
 music = "d220801c-3a54-4390-ad99-6c2444ea02aa" ' Which input would you like to fade down can be number, GUID or Name
 presenterchannel = "Presenter Audio"           ' Which input would you like to fade up number, GUID or Name
 busselection = "SetBusAVolume"                 ' Which Bus would you like to fade up number, GUID or Name
+overlayinput = "OverlayInput3Out"
 
 bus = "true" 'if you want to fade a bus up true else false
 presenter = "true" 'if you want to fade an input up true else false 
@@ -43,7 +44,7 @@ If remmin = "00" And remsec = "05"
  API.function("SetVolumeFade",Input:=music, Value:="0,5000")
 
 Sleep(1500)
-API.function("OverlayInput3Out")
+API.function(overlayinput)
 
 Sleep(3000)
 
