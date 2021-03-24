@@ -1,0 +1,36 @@
+dim remsec as string = ""
+dim remmin as string = ""
+dim i as integer = 1
+
+Do While i <> 2
+' if you don't have countdownclock.gtzip and a field called Countdown.Text it won't do much
+dim content as string = Input.Find("Countdown Timer").Text("txtClock")
+
+remmin = (content.Substring(0,2))
+remsec = (content.Substring(3,2))
+
+If remmin = "00" And remsec = "30"
+ API.function("StartRecording")
+ API.function("StartMultiCorder")
+
+End If
+
+If remmin = "00" And remsec = "05"
+ API.function("SetVolumeFade",Input:=17, Value:="0,5000")
+
+Sleep(1500)
+API.function("OverlayInput3Out")
+
+Sleep(3000)
+
+API.function("SetBusAVolume", Value:="75")
+API.function("SetFader",Value:="255")
+
+i = 2
+End If
+
+'Console.WriteLine(remmin)
+'Console.WriteLine(remsec)
+
+Sleep(1000)
+Loop
