@@ -1,6 +1,28 @@
+' Tihs script allows you to automate your first transition based on the count down timer, when teh timer hits 00:05 it fades the music down over 5 seconds at 00:03 it Fades the time off 
+' of program and at 00:00 it cuts preview to program and buts the presenter audio/bus depending on setup to 75%. 
+
 dim remsec as string = ""
 dim remmin as string = ""
 dim i as integer = 1
+dim music as string = "" 
+dim presenterchannel as string = "" 
+dim bus as string = ""
+dim presenter as string = ""
+dim busselection as string = ""
+
+
+'//////////////// To Edit ////////////////////
+
+music = "d220801c-3a54-4390-ad99-6c2444ea02aa" ' Which input would you like to fade down can be number, GUID or Name
+presenterchannel = "Presenter Audio"           ' Which input would you like to fade up number, GUID or Name
+busselection = "SetBusAVolume"                 ' Which Bus would you like to fade up number, GUID or Name
+
+bus = "true" 'if you want to fade a bus up true else false
+presenter = "true" 'if you want to fade an input up true else false 
+
+''//////////////// Edit nothing past here ////////////////////
+
+
 
 Do While i <> 2
 ' if you don't have countdownclock.gtzip and a field called Countdown.Text it won't do much
@@ -16,14 +38,19 @@ If remmin = "00" And remsec = "30"
 End If
 
 If remmin = "00" And remsec = "05"
- API.function("SetVolumeFade",Input:=17, Value:="0,5000")
+ API.function("SetVolumeFade",Input:=music, Value:="0,5000")
 
 Sleep(1500)
 API.function("OverlayInput3Out")
 
 Sleep(3000)
 
-API.function("SetBusAVolume", Value:="75")
+If presenter = "true" Then 
+API.function("SetVolumeFade",Input:=presenterchannel, Value:="75,100")
+End If
+If bus = "true" Then 
+API.function(busselection, Value:="75")
+End If
 API.function("SetFader",Value:="255")
 
 i = 2
