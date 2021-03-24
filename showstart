@@ -1,6 +1,8 @@
 ' Tihs script allows you to automate your first transition based on the count down timer, when teh timer hits 00:05 it fades the music down over 5 seconds at 00:03 it Fades the time off 
 ' of program and at 00:00 it cuts preview to program and buts the presenter audio/bus depending on setup to 75%. 
 
+' For this to work your countdown timers input name needs to be Countdown Timer and the text field needs to be called txtclock
+
 dim remsec as string = ""
 dim remmin as string = ""
 dim i as integer = 1
